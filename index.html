@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday, Barsha ♡</title>
+    
+    <!-- Google Fonts for Elegant Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-deep: #050510;
+            --bg-mid: #16123a;
+            --bg-light: #432c6a;
+            --accent-blue: #86A8E7;
+            --accent-pink: #D16BA5;
+            --text-main: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        /* 1. GLOBAL VIEWPORT CONTROL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100dvh;
+            /* Keep body fixed to lock background; pages scroll individually */
+            overflow: hidden; 
+        }
+
+        /* --- BACKGROUND LAYER (Non-blocking) --- */
+        #background-container, #sky-canvas, .clouds {
+            pointer-events: none !important;
+        }
+
+        #background-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 60%, var(--bg-light) 100%);
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        #sky-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .clouds {
+            position: fixed;
+            bottom: -10%; left: 0; width: 200%; height: 40%;
+            background: radial-gradient(ellipse at bottom, rgba(209, 107, 165, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 2;
+            animation: cloudDrift 60s linear infinite alternate;
+        }
+        
+        @keyframes cloudDrift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-20%); }
+        }
+
+        /* --- APP & PAGES (Strict Boundaries) --- */
+        #app {
+            position: relative;
+            z-index: 10;
+            width: 100%; 
+            height: 100dvh;
+            overflow: hidden; /* strictly contain all children */
+        }
+
+        /* 2. PAGE CONTAINERS */
+        .page {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            max-width: 100%;
+            height: 100dvh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            overflow-y: auto; /* Natural scrolling if content exceeds height */
+            
+            /* Hide scrollbar for cinematic look */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+            
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), filter 1s ease;
+            transform: scale(1.02);
+            filter: blur(10px);
+        }
+
+        .page::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        
+        .page.active {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            filter: blur(0px);
+        }
+        
+        .page.exit {
+            display: flex; 
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.98);
+            filter: blur(10px);
+        }
+
+        /* 3. RESPONSIVE & COMPACT CONTENT WRAPPER */
+        .content-wrapper {
+            width: min(88%, 700px);
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        /* --- TYPOGRAPHY & ELEMENTS --- */
+        h1, h2, p, .cinzel, .vibes, .small-text, .sequence-text, .hidden-message, .glass-btn {
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+
+        h1, h2, .cinzel { font-family: 'Cinzel', serif; }
+        .vibes { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--accent-pink); text-shadow: 0 0 15px rgba(209, 107, 165, 0.6); margin-bottom: 15px;}
+        
+        p {
+            font-size: 1rem; 
+            line-height: 1.6; 
+            margin-bottom: 12px; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            max-width: 100%;
+        }
+
+        /* --- CINEMATIC IMAGE WRAPPER --- */
+        .cinematic-image-wrapper {
+            width: 100%;
+            max-width: 360px; /* Keeps it compact on desktop */
+            margin: 0 auto 20px auto;
+            padding: 8px; /* Glass frame thickness */
+            border-radius: 16px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 25px rgba(134, 168, 231, 0.3), 0 0 15px rgba(209, 107, 165, 0.2);
+            animation: floatImage 6s ease-in-out infinite;
+            /* Ensures no 3D distortion on the image */
+            transform: translateZ(0); 
+        }
+
+        .cinematic-image-wrapper img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover; /* Prevents distortion */
+            border-radius: 10px;
+            display: block;
+        }
+
+        @keyframes floatImage {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Interactive Buttons */
+        .glass-btn {
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+            margin-top: 15px; 
+            padding: 12px 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--accent-blue);
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(134, 168, 231, 0.3);
+            white-space: normal;
+        }
+
+        .glass-btn:hover {
+            background: rgba(134, 168, 231, 0.2);
+            box-shadow: 0 0 35px rgba(134, 168, 231, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .glass-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Custom Reveal Wrapper for Page 2 Button - Extra Smooth Cinematic Animation */
+        .reveal-wrapper {
+            display: none; /* Takes no space initially */
+            opacity: 0;
+            transform: translateY(10px) scale(0.98);
+            filter: blur(2px);
+            /* Ultra-smooth, snappier cinematic ease-out */
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .reveal-wrapper.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+            pointer-events: auto;
+        }
+
+        /* --- LOADING SCREEN --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-deep); z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1s ease;
+        }
+        
+        .loader-text {
+            font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 1.2rem;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse { 0% { opacity: 0.5; text-shadow: 0 0 5px #fff; } 100% { opacity: 1; text-shadow: 0 0 20px var(--accent-blue); } }
+
+        /* --- PAGE SPECIFICS --- */
+        #page-1 h1 {
+            font-size: 2.2rem; letter-spacing: 2px; margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+        .small-text { font-style: italic; font-size: 1rem; opacity: 0.8; }
+
+        .heart-container { 
+            margin: 15px 0 0 0; 
+            cursor: pointer; 
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+            max-width: 100%;
+        }
+
+        .heart-interactive-wrapper {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Soft expanding glow ring behind the heart */
+        .glow-ring {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,75,114,0.4) 0%, transparent 70%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glow-ring.expand {
+            animation: ringExpand 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes ringExpand {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+        
+        .heart {
+            font-size: 3rem; 
+            color: #ff4b72;
+            text-shadow: 0 0 30px rgba(255, 75, 114, 0.8);
+            animation: heartbeat 2s infinite; 
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+        }
+
+        /* Soft, romantic slow pulse after interaction */
+        @keyframes heartbeat-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); text-shadow: 0 0 40px rgba(255, 75, 114, 0.9); }
+        }
+        
+        .hidden-message {
+            opacity: 0; 
+            max-height: 0; 
+            overflow: hidden;
+            transform: translateY(10px);
+            /* Smooth and fast cinematic reveal */
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
+                        max-height 0.7s cubic-bezier(0.22, 1, 0.36, 1), 
+                        margin-top 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            color: var(--accent-pink); font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 0;
+        }
+        .hidden-message.show { 
+            opacity: 1; 
+            max-height: 120px;
+            margin-top: 10px; 
+            transform: translateY(0);
+        }
+
+        .particle {
+            position: absolute; pointer-events: none !important;
+            background: radial-gradient(circle, #ff4b72 20%, transparent 70%);
+            border-radius: 50%;
+            animation: floatParticle 1.2s ease-out forwards;
+        }
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+
+        /* 4. PAGE 3 SURPRISE CARDS */
+        .cards-container {
+            width: 100%;
+            margin: 15px auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+        
+        .glass-card { 
+            width: 100%; 
+            height: 130px; 
+            perspective: 1000px; 
+            cursor: pointer; 
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+        }
+        
+        .card-inner {
+            width: 100%; height: 100%; position: relative;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .glass-card.flipped .card-inner { transform: rotateY(180deg); }
+        
+        .card-front, .card-back {
+            width: 100%; height: 100%; position: absolute; backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            padding: 12px; border-radius: 12px;
+            background: var(--glass-bg); backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .card-front { font-size: 1.1rem; font-weight: 500; font-family: 'Cinzel', serif;}
+        .card-back { transform: rotateY(180deg); font-size: 0.85rem; line-height: 1.4; color: var(--accent-pink); }
+        
+        #finalSurpriseBtn {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+        #finalSurpriseBtn:disabled {
+            opacity: 0;
+            cursor: not-allowed;
+        }
+        #finalSurpriseBtn.unlocked {
+            opacity: 1;
+            pointer-events: auto;
+            animation: pulse-glow 2s infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(134, 168, 231, 0.3); }
+            100% { box-shadow: 0 0 25px rgba(134, 168, 231, 0.8); }
+        }
+
+        #page-4 .sequence-text {
+            position: absolute; 
+            width: min(90%, 600px); 
+            max-width: 100%;
+            opacity: 0; 
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            transform: translateY(20px); 
+            pointer-events: none;
+        }
+        #page-4 .sequence-text.show { 
+            opacity: 1; 
+            transform: translateY(0); 
+            pointer-events: auto;
+        }
+
+        /* --- RESPONSIVE DESIGN FOR SMALLER SCREENS --- */
+        @media (max-width: 768px) {
+            h1, #page-1 h1 { font-size: 1.6rem; margin: 15px 0; }
+            .vibes { font-size: 2rem; margin-bottom: 12px; }
+            h2.cinzel { font-size: 1.4rem; margin-bottom: 10px !important; }
+            p { font-size: 0.9rem; margin-bottom: 10px; line-height: 1.5; }
+            .small-text { font-size: 0.85rem; }
+            
+            .content-wrapper { width: 88%; padding: 20px 0; }
+            .glass-btn { padding: 10px 24px; font-size: 0.8rem; margin-top: 10px; }
+            
+            .heart { font-size: 2.5rem; }
+            
+            /* Cinematic Image Shrink for Mobile */
+            .cinematic-image-wrapper {
+                width: 75%;
+                max-width: 280px;
+                padding: 6px;
+                margin-bottom: 15px;
+                border-radius: 12px;
+            }
+            .cinematic-image-wrapper img {
+                border-radius: 8px;
+            }
+
+            /* Compact stacked cards */
+            .cards-container {
+                width: 100%;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin: 10px auto;
+            }
+            .glass-card { height: 90px; } 
+            .card-front { font-size: 1rem; }
+            .card-back { font-size: 0.8rem; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .clouds, .heart, #sky-canvas, #finalSurpriseBtn.unlocked, .cinematic-image-wrapper { animation: none; }
+            .page { transition: opacity 0.5s ease; transform: none !important; filter: none !important;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div id="background-container"></div>
+    <canvas id="sky-canvas"></canvas>
+    <div class="clouds"></div>
+
+    <!-- Hidden Audio -->
+    <audio id="bg-audio" style="display: none;"></audio>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-text">Connecting the stars...</div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="app">
+        
+        <!-- PAGE 1: THE BEGINNING -->
+        <section id="page-1" class="page">
+            <div class="content-wrapper">
+                <p class="small-text cinzel">"Somewhere between the stars,<br>there is a little story waiting for you..."</p>
+                <h1 class="vibes">Happy Birthday, Barsha ♡</h1>
+                <button id="beginBtn" class="glass-btn">Begin the Journey ✦</button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: A LITTLE MESSAGE -->
+        <section id="page-2" class="page">
+            <div class="content-wrapper">
+                
+                <!-- UPLOADED CINEMATIC IMAGE -->
+                <div class="cinematic-image-wrapper">
+                    <img src="input_file_0.jpeg" alt="Barsha">
+                </div>
+
+                <h2 class="cinzel" style="margin-bottom: 15px;">For Someone Special</h2>
+                <p>Out of all the countless moments in this world,<br>I'm really glad that somehow,<br>our paths crossed.</p>
+                <p>You make ordinary days feel a little more beautiful,<br>and today is a reminder of just how special you are.</p>
+                <p>Happy Birthday, Barsha. ♡</p>
+                
+                <div id="heartBox" class="heart-container">
+                    <div class="heart-interactive-wrapper">
+                        <div class="glow-ring"></div>
+                        <div class="heart">❤️</div>
+                    </div>
+                    <div class="hidden-message" id="secret-msg">
+                        "Here's a little secret...<br>You make my world brighter. ✨"
+                    </div>
+                </div>
+
+                <!-- Hidden Wrapper for sequence (Takes zero space initially) -->
+                <div id="moreBtnWrapper" class="reveal-wrapper">
+                    <button id="moreBtn" class="glass-btn">There's More ✦</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: THE LITTLE SURPRISES -->
+        <section id="page-3" class="page">
+            <div class="content-wrapper">
+                <h2 class="cinzel" style="margin-bottom: 5px;">The Little Surprises</h2>
+                <p class="small-text">Tap the cards to reveal</p>
+                
+                <div class="cards-container">
+                    <div class="glass-card surprise-card" data-index="0">
+                        <div class="card-inner">
+                            <div class="card-front">✨ Surprise #1</div>
+                            <div class="card-back">"May your smile always find a reason to shine."</div>
+                        </div>
+                    </div>
+                    <div class="glass-card surprise-card" data-index="1">
+                        <div class="card-inner">
+                            <div class="card-front">🌙 Surprise #2</div>
+                            <div class="card-back">"Some moments become memories before we even realize it."</div>
+                        </div>
+                    </div>
+                    <div class="glass-card surprise-card" data-index="2">
+                        <div class="card-inner">
+                            <div class="card-front">☄️ Surprise #3</div>
+                            <div class="card-back">"If I could make one wish tonight,<br>I'd wish for countless beautiful moments for you."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="finalSurpriseBtn" class="glass-btn" disabled>Final Surprise ♡</button>
+            </div>
+        </section>
+
+        <!-- PAGE 4: THE FINAL SURPRISE -->
+        <section id="page-4" class="page">
+            <div class="content-wrapper">
+                
+                <div id="seq-1" class="sequence-text cinzel" style="font-size: 1.8rem;">Wait...</div>
+                
+                <div id="seq-2" class="sequence-text cinzel" style="font-size: 1.4rem;">One final thing I wanted to tell you...</div>
+                
+                <div id="seq-3" class="sequence-text vibes" style="font-size: 3rem;">Happy Birthday, Barsha ❤️</div>
+                
+                <div id="seq-4" class="sequence-text">
+                    <p>I hope this new chapter of your life<br>is filled with beautiful memories,<br>unexpected happiness,<br>big dreams,<br>and countless reasons to smile.</p>
+                    <p>Keep shining,<br>just like the stars above us. ✨</p>
+                </div>
+
+                <div id="seq-5" class="sequence-text">
+                    <p class="cinzel" style="color: var(--accent-pink);">With lots of love,<br>Always wishing the best for you ♡</p>
+                    <button id="replayBtn" class="glass-btn">Replay Our Little Journey ↻</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        /* ====================================================================
+           1. DOM CONTENT LOADED (Master Initialization)
+           ==================================================================== */
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // --- STATE VARIABLES ---
+            let currentPage = 1;
+            let isTransitioning = false;
+            let heartTapped = false; // Lock for heart sequence
+            let openedSurprises = 0;
+            let cardsState = [false, false, false];
+            let sequenceTimeouts = [];
+
+            // --- CONFIGURATION ---
+            const CONFIG = {
+                MUSIC_FILE: "music.mp3", 
+                images: { page1: "", page2: "", page3: "", page4: "" }
+            };
+
+            // --- ELEMENT SELECTORS ---
+            const btnBegin = document.getElementById("beginBtn");
+            const btnMore = document.getElementById("moreBtn");
+            const btnFinal = document.getElementById("finalSurpriseBtn");
+            const btnReplay = document.getElementById("replayBtn");
+            const heartBox = document.getElementById("heartBox");
+            const surpriseCards = document.querySelectorAll(".surprise-card");
+            const bgContainer = document.getElementById("background-container");
+
+            /* ====================================================================
+               2. INITIALIZE EVENT LISTENERS
+               ==================================================================== */
+            if (btnBegin) {
+                btnBegin.addEventListener("click", () => {
+                    MusicSystem.startJourneyMusic();
+                    safeNavigate(2);
+                });
+            }
+
+            if (btnMore) {
+                btnMore.addEventListener("click", () => {
+                    safeNavigate(3);
+                });
+            }
+
+            if (btnFinal) {
+                btnFinal.addEventListener("click", () => {
+                    safeNavigate(4);
+                    triggerFinalSequence();
+                });
+            }
+
+            if (btnReplay) {
+                btnReplay.addEventListener("click", replayJourney);
+            }
+
+            if (heartBox) {
+                heartBox.addEventListener("click", () => {
+                    pulseHeart(heartBox);
+                });
+            }
+
+            if (surpriseCards.length > 0) {
+                surpriseCards.forEach((card) => {
+                    card.addEventListener("click", () => {
+                        const index = parseInt(card.getAttribute("data-index"));
+                        openSurprise(card, index);
+                    });
+                });
+            }
+
+            /* ====================================================================
+               3. NAVIGATION LOGIC (Robust Page Changing)
+               ==================================================================== */
+            function safeNavigate(targetPageNumber) {
+                if (isTransitioning || currentPage === targetPageNumber) return;
+                
+                isTransitioning = true;
+                const currentEl = document.getElementById(`page-${currentPage}`);
+                const targetEl = document.getElementById(`page-${targetPageNumber}`);
+
+                if (currentEl) {
+                    currentEl.classList.remove("active");
+                    currentEl.classList.add("exit");
+                }
+
+                // Allow exit animation to play, then swap visibility
+                setTimeout(() => {
+                    if (currentEl) {
+                        currentEl.style.display = "none";
+                        currentEl.classList.remove("exit");
+                    }
+                    
+                    if (targetEl) {
+                        targetEl.style.display = "flex";
+                        // Reset scroll position to top whenever navigating to a new page
+                        targetEl.scrollTop = 0; 
+                        
+                        // Force a browser reflow so CSS transitions trigger correctly
+                        void targetEl.offsetWidth; 
+                        
+                        targetEl.classList.add("active");
+                        updateBackground(targetPageNumber);
+                    }
+                    
+                    currentPage = targetPageNumber;
+
+                    // Release transition lock after target becomes active
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 800);
+                }, 800); 
+            }
+
+            function updateBackground(pageIndex) {
+                const imgKey = 'page' + pageIndex;
+                const imgUrl = CONFIG.images[imgKey];
+                
+                if (imgUrl && imgUrl.trim() !== "") {
+                    bgContainer.style.backgroundImage = `linear-gradient(rgba(5,5,16,0.6), rgba(22,18,58,0.8)), url('${imgUrl}')`;
+                } else {
+                    const gradients = [
+                        "linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 60%, var(--bg-light) 100%)",
+                        "linear-gradient(180deg, #090918 0%, #20133c 50%, #46255c 100%)",
+                        "linear-gradient(180deg, #050510 0%, #17244a 60%, #30537d 100%)",
+                        "linear-gradient(180deg, #02010a 0%, #100b29 50%, #68305c 100%)"
+                    ];
+                    bgContainer.style.backgroundImage = gradients[pageIndex - 1];
+                }
+            }
+
+
+            /* ====================================================================
+               4. INTERACTIONS & LOGIC
+               ==================================================================== */
+            function pulseHeart(el) {
+                if (heartTapped) return; // Prevent double trigger
+                heartTapped = true;
+
+                const heart = el.querySelector(".heart");
+                const ring = el.querySelector(".glow-ring");
+                const msg = document.getElementById("secret-msg");
+                const moreWrapper = document.getElementById("moreBtnWrapper");
+                
+                // 1. Heart Gentle Pulse & Glow Ring Reveal
+                if (heart) {
+                    heart.style.animation = "none"; // Stop aggressive default beat
+                    void heart.offsetWidth; // Trigger reflow
+                    
+                    // Smooth scale pulse
+                    heart.style.transition = "transform 1s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 1s cubic-bezier(0.22, 1, 0.36, 1)";
+                    heart.style.transform = "scale(1.1)";
+                    heart.style.textShadow = "0 0 50px rgba(255, 75, 114, 1)";
+                    
+                    if (ring) {
+                        ring.classList.add("expand");
+                    }
+
+                    // Settle into a soft, romantic beat after the initial pulse finishes
+                    setTimeout(() => {
+                        heart.style.transition = "all 0.3s ease";
+                        heart.style.transform = ""; 
+                        heart.style.animation = "heartbeat-slow 4s infinite ease-in-out"; 
+                    }, 1000);
+                }
+                
+                // 2. Reveal Message (Duration: 700ms via CSS)
+                if (msg) msg.classList.add("show");
+                
+                // 3. Spawn subtle floating particles 
+                for(let i=0; i<6; i++) { 
+                    const p = document.createElement('div');
+                    p.classList.add('particle');
+                    
+                    const size = Math.random() * 8 + 4;
+                    p.style.width = `${size}px`; 
+                    p.style.height = `${size}px`;
+                    
+                    const tx = (Math.random() - 0.5) * 100;
+                    const ty = (Math.random() - 1) * 100;
+                    p.style.setProperty('--tx', `${tx}px`);
+                    p.style.setProperty('--ty', `${ty}px`);
+                    
+                    p.style.left = '50%'; 
+                    p.style.top = '50%';
+                    
+                    el.appendChild(p);
+                    setTimeout(() => p.remove(), 1200);
+                }
+
+                // 4. Smoothly Reveal "There's More" bar
+                // Waits 700ms (Message anim completes) + 350ms pause = 1050ms
+                setTimeout(() => {
+                    if (moreWrapper) {
+                        moreWrapper.style.display = 'block';
+                        void moreWrapper.offsetWidth; // Force reflow to ensure smooth transition from display:none
+                        moreWrapper.classList.add('show');
+                    }
+                }, 1050); 
+            }
+
+            function openSurprise(card, index) {
+                if (cardsState[index]) return; 
+                
+                card.classList.add("flipped");
+                cardsState[index] = true;
+                openedSurprises++;
+                
+                checkAllSurprises();
+            }
+
+            function checkAllSurprises() {
+                if (openedSurprises >= 3 && btnFinal) {
+                    btnFinal.disabled = false;
+                    btnFinal.classList.add("unlocked");
+                }
+            }
+
+            function triggerFinalSequence() {
+                sequenceTimeouts.forEach(clearTimeout);
+                sequenceTimeouts = [];
+
+                const seqs = [
+                    document.getElementById('seq-1'), document.getElementById('seq-2'), 
+                    document.getElementById('seq-3'), document.getElementById('seq-4'), 
+                    document.getElementById('seq-5')
+                ];
+                
+                seqs.forEach(s => { if(s) s.classList.remove('show'); });
+
+                sequenceTimeouts.push(setTimeout(() => { if(seqs[0]) seqs[0].classList.add('show'); }, 1500));
+                
+                sequenceTimeouts.push(setTimeout(() => { 
+                    if(seqs[0]) seqs[0].classList.remove('show'); 
+                    sequenceTimeouts.push(setTimeout(() => { if(seqs[1]) seqs[1].classList.add('show'); }, 1500)); 
+                }, 4000));
+                
+                sequenceTimeouts.push(setTimeout(() => { 
+                    if(seqs[1]) seqs[1].classList.remove('show'); 
+                    sequenceTimeouts.push(setTimeout(() => { if(seqs[2]) seqs[2].classList.add('show'); }, 1500)); 
+                }, 8000));
+                
+                sequenceTimeouts.push(setTimeout(() => { 
+                    if(seqs[2]) seqs[2].classList.remove('show'); 
+                    sequenceTimeouts.push(setTimeout(() => { if(seqs[3]) seqs[3].classList.add('show'); }, 1500)); 
+                }, 12000));
+                
+                sequenceTimeouts.push(setTimeout(() => { 
+                    if(seqs[3]) seqs[3].classList.remove('show'); 
+                    sequenceTimeouts.push(setTimeout(() => { if(seqs[4]) seqs[4].classList.add('show'); }, 1500)); 
+                }, 22000));
+            }
+
+            function replayJourney() {
+                // Reset Page 3
+                openedSurprises = 0;
+                cardsState = [false, false, false];
+                surpriseCards.forEach(c => c.classList.remove('flipped'));
+                
+                if (btnFinal) {
+                    btnFinal.classList.remove("unlocked");
+                    btnFinal.disabled = true;
+                }
+                
+                // Reset Page 4
+                sequenceTimeouts.forEach(clearTimeout);
+                sequenceTimeouts = [];
+                document.querySelectorAll('.sequence-text').forEach(s => s.classList.remove('show'));
+
+                // Reset Page 2 (Heart Sequence)
+                heartTapped = false;
+                const heart = document.querySelector(".heart");
+                const ring = document.querySelector(".glow-ring");
+                
+                if (heart) {
+                    heart.style.transition = "";
+                    heart.style.transform = "";
+                    heart.style.textShadow = "";
+                    heart.style.animation = "heartbeat 2s infinite";
+                }
+                if (ring) {
+                    ring.classList.remove("expand");
+                }
+                
+                const secretMsg = document.getElementById("secret-msg");
+                if (secretMsg) secretMsg.classList.remove("show");
+                
+                const moreWrapper = document.getElementById("moreBtnWrapper");
+                if (moreWrapper) {
+                    moreWrapper.classList.remove("show");
+                    moreWrapper.style.display = "none";
+                }
+                
+                // Go back to start
+                safeNavigate(1);
+            }
+
+
+            /* ====================================================================
+               5. HIDDEN CINEMATIC MUSIC SYSTEM
+               ==================================================================== */
+            const MusicSystem = {
+                audio: document.getElementById("bg-audio"),
+                isPlaying: false,
+                targetVolume: 0.35,
+                fadeInterval: null,
+
+                init() {
+                    if (!this.audio) return;
+                    this.audio.src = CONFIG.MUSIC_FILE;
+                    this.audio.loop = true;
+                    this.audio.volume = 0; 
+                    
+                    this.audio.addEventListener('error', () => {
+                        console.warn("Music file missing or failed to load. The journey will continue silently.");
+                    });
+                },
+
+                startJourneyMusic() {
+                    if (!this.audio || this.isPlaying) return;
+                    
+                    this.audio.play().then(() => {
+                        this.isPlaying = true;
+                        this.fadeVolume(this.targetVolume, 2000); 
+                    }).catch((e) => {
+                        console.warn("Audio autoplay blocked by browser or file missing:", e);
+                        this.isPlaying = false;
+                    });
+                },
+
+                fadeVolume(endVolume, duration) {
+                    clearInterval(this.fadeInterval);
+                    const steps = 30;
+                    const stepTime = duration / steps;
+                    const volumeStep = (endVolume - this.audio.volume) / steps;
+                    
+                    this.fadeInterval = setInterval(() => {
+                        let newVol = this.audio.volume + volumeStep;
+                        if ((volumeStep > 0 && newVol >= endVolume) || (volumeStep < 0 && newVol <= endVolume)) {
+                            this.audio.volume = Math.max(0, Math.min(1, endVolume));
+                            clearInterval(this.fadeInterval);
+                            this.fadeInterval = null;
+                        } else {
+                            this.audio.volume = newVol;
+                        }
+                    }, stepTime);
+                }
+            };
+            MusicSystem.init();
+
+
+            /* ====================================================================
+               6. CANVAS BACKGROUND (Stars & Comet)
+               ==================================================================== */
+            const canvas = document.getElementById('sky-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height, stars = [], shootingStars = [];
+
+                function resizeCanvas() {
+                    width = window.innerWidth;
+                    height = window.innerHeight;
+                    canvas.width = width;
+                    canvas.height = height;
+                    
+                    stars = [];
+                    const numStars = Math.floor(width * height / 1000); 
+                    for (let i = 0; i < numStars; i++) {
+                        stars.push({
+                            x: Math.random() * width,
+                            y: Math.random() * height,
+                            radius: Math.random() * 1.5,
+                            alpha: Math.random(),
+                            speed: Math.random() * 0.05
+                        });
+                    }
+                }
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                function drawComet() {
+                    const time = Date.now() * 0.0005;
+                    const startX = width * 0.8 - Math.sin(time * 0.2) * 50; 
+                    const startY = height * 0.1 + Math.cos(time * 0.3) * 30;
+                    const length = Math.min(width, height) * 0.5;
+                    const angle = Math.PI * 0.75; 
+                    const endX = startX + Math.cos(angle) * length;
+                    const endY = startY + Math.sin(angle) * length;
+
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = "#86A8E7";
+                    
+                    const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+                    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+                    gradient.addColorStop(0.1, "rgba(134, 168, 231, 0.8)");
+                    gradient.addColorStop(0.4, "rgba(209, 107, 165, 0.3)");
+                    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(endX, endY);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = gradient;
+                    ctx.stroke();
+
+                    const angle2 = angle - 0.1;
+                    const endX2 = startX + Math.cos(angle2) * (length * 0.8);
+                    const endY2 = startY + Math.sin(angle2) * (length * 0.8);
+                    const gradient2 = ctx.createLinearGradient(startX, startY, endX2, endY2);
+                    gradient2.addColorStop(0, "rgba(255, 255, 255, 0.8)");
+                    gradient2.addColorStop(0.2, "rgba(209, 107, 165, 0.5)");
+                    gradient2.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(endX2, endY2);
+                    ctx.lineWidth = 1.5;
+                    ctx.strokeStyle = gradient2;
+                    ctx.stroke();
+                    
+                    ctx.shadowBlur = 0; 
+                }
+
+                function drawShootingStars() {
+                    if (Math.random() < 0.02) {
+                        shootingStars.push({
+                            x: Math.random() * width,
+                            y: 0,
+                            length: Math.random() * 80 + 20,
+                            speed: Math.random() * 10 + 10,
+                            angle: Math.PI * 0.75,
+                            opacity: 1
+                        });
+                    }
+                    for (let i = shootingStars.length - 1; i >= 0; i--) {
+                        let ss = shootingStars[i];
+                        ctx.beginPath();
+                        ctx.moveTo(ss.x, ss.y);
+                        ctx.lineTo(ss.x - Math.cos(ss.angle) * ss.length, ss.y - Math.sin(ss.angle) * ss.length);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${ss.opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+
+                        ss.x -= Math.cos(ss.angle) * ss.speed;
+                        ss.y -= Math.sin(ss.angle) * ss.speed;
+                        ss.opacity -= 0.02;
+
+                        if (ss.opacity <= 0) shootingStars.splice(i, 1);
+                    }
+                }
+
+                function animateCanvas() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    stars.forEach(star => {
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                        ctx.fill();
+                        
+                        star.alpha += star.speed;
+                        if (star.alpha > 1 || star.alpha < 0.1) star.speed = -star.speed;
+                    });
+
+                    drawComet();
+                    drawShootingStars();
+                    requestAnimationFrame(animateCanvas);
+                }
+                animateCanvas();
+            }
+
+            /* ====================================================================
+               7. FINALIZE LOADING
+               ==================================================================== */
+            updateBackground(1);
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        const p1 = document.getElementById('page-1');
+                        if (p1) {
+                            p1.style.display = "flex";
+                            void p1.offsetWidth; // Reflow
+                            p1.classList.add('active');
+                        }
+                    }, 1000);
+                }
+            }, 2500);
+
+        });
+    </script>
+</body>
+</html>
